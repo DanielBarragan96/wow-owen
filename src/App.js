@@ -25,7 +25,7 @@ function MoviesHeader({ movies }) {
   let singleMovie = !selectedMovie ? (
     <p>This list is empty</p>
   ) : (
-    <p>{selectedMovie}</p>
+    <MovieCard movie={selectedMovie} />
   );
   return (
     <>
@@ -35,12 +35,22 @@ function MoviesHeader({ movies }) {
 }
 
 function MovieCard({ movie }) {
-  return !movie?.length ? (
+  const [details, setDetails] = useState(null);
+  useEffect(() => {
+    fetch(
+      `https://owen-wilson-wow-api.herokuapp.com/wows/random?movie=${movie}`
+    )
+      .then((response) => response.json())
+      .then(setDetails);
+  }, []);
+
+  console.log(details);
+  return !details?.length ? (
     <p>This list is empty</p>
   ) : (
-    <>
-      <ul></ul>
-    </>
+    <p style={{ textAlign: "center" }}>
+      <img height={500} src={details[0].poster} alt={details[0].movie} />
+    </p>
   );
 }
 
