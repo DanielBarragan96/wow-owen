@@ -38,12 +38,13 @@ function MovieCard({ movie }) {
   const [details, setDetails] = useState(null);
   useEffect(() => {
     fetch(
-      `https://owen-wilson-wow-api.herokuapp.com/wows/random?movie=${movie}`
+      `https://owen-wilson-wow-api.herokuapp.com/wows/random?movie=${movie}&results=100`
     )
       .then((response) => response.json())
       .then(setDetails);
   }, [movie]);
 
+  console.log(details);
   return !details?.length ? (
     <p>This list is empty</p>
   ) : (
@@ -52,20 +53,25 @@ function MovieCard({ movie }) {
         <img src={details[0].poster} alt={details[0].movie} />
       </div>
       <h1 className="center-text">{details[0].movie}</h1>
-      <div className="center-video">
-        <video
-          key={details[0].video["360p"]}
-          controls
-          onMouseOver={(event) => event.target.play()}
-          onMouseOut={(event) => {
-            event.target.currentTime = 0;
-            event.target.pause();
-          }}
-        >
-          <source src={details[0].video["360p"]} type="video/mp4" />
-        </video>
-        <p>{details[0].full_line}</p>
-      </div>
+      {details.map((clip, i) => (
+        <div key={i}>
+          <div className="center-video">
+            <video
+              key={clip.video["360p"]}
+              controls
+              onMouseOver={(event) => event.target.play()}
+              onMouseOut={(event) => {
+                event.target.currentTime = 0;
+                event.target.pause();
+              }}
+            >
+              <source src={clip.video["360p"]} type="video/mp4" />
+            </video>
+            <p>{clip.full_line}</p>
+          </div>
+        </div>
+      ))}
+      ;
     </div>
   );
 }
