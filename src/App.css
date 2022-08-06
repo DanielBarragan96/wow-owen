@@ -3,7 +3,6 @@
 }
 
 .center-text {
-  margin: 0;
   position: relative;
   width: 100%;
   text-align: center;
@@ -16,6 +15,16 @@
 }
 
 .center-image img {
+  width: 30em;
+  max-width: 80%;
+}
+
+.center-video {
+  width: 100%;
+  text-align: center;
+}
+
+.center-video video {
   width: 30em;
   max-width: 80%;
 }
