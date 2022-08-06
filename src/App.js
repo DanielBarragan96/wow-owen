@@ -5,9 +5,12 @@ function MoviesHeader({ movies }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   let header = !movies?.length ? (
-    <p>This list is empty</p>
+    <p className="center-text">No movies found</p>
   ) : (
     <>
+      <div class="page-header">
+        <h1 className="center-title">Example Page Header</h1>
+      </div>
       <ul>
         {movies.map((movie) => (
           <button
@@ -23,7 +26,7 @@ function MoviesHeader({ movies }) {
     </>
   );
   let singleMovie = !selectedMovie ? (
-    <p>This list is empty</p>
+    <p className="center-text">This list is empty</p>
   ) : (
     <MovieCard movie={selectedMovie} />
   );
@@ -90,7 +93,7 @@ function App() {
       .catch(setError);
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <h1 className="center-text">Loading...</h1>;
   if (error) return <pre>{JSON.stringify(error)}</pre>;
   if (!movies) return null;
   return <MoviesHeader movies={movies} />;
