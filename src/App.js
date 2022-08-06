@@ -8,8 +8,8 @@ function MoviesHeader({ movies }) {
     <p className="center-text">No movies found</p>
   ) : (
     <>
-      <div class="page-header">
-        <h1 className="center-title">Example Page Header</h1>
+      <div>
+        <h1>Wow Owen!</h1>
       </div>
       <ul>
         {movies.map((movie) => (
@@ -26,7 +26,7 @@ function MoviesHeader({ movies }) {
     </>
   );
   let singleMovie = !selectedMovie ? (
-    <p className="center-text">This list is empty</p>
+    <p className="center-text">Select movie.</p>
   ) : (
     <MovieCard movie={selectedMovie} />
   );
