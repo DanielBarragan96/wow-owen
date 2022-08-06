@@ -42,15 +42,18 @@ function MovieCard({ movie }) {
     )
       .then((response) => response.json())
       .then(setDetails);
-  }, []);
+  }, [movie]);
 
   console.log(details);
   return !details?.length ? (
     <p>This list is empty</p>
   ) : (
-    <p style={{ textAlign: "center" }}>
-      <img height={500} src={details[0].poster} alt={details[0].movie} />
-    </p>
+    <div>
+      <div className="center-image">
+        <img src={details[0].poster} alt={details[0].movie} />
+      </div>
+      <h1 className="center-text">{details[0].movie}</h1>
+    </div>
   );
 }
 
